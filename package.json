@@ -1,10 +1,11 @@
 {
-  "name": "backgammon-board",
+  "name": "backgammon-board-react",
   "version": "1.0.0",
   "description": "Simplistic backgammon board in react",
   "main": "dist/bundle.js",
   "scripts": {
     "build": "npx webpack",
+    "watch": "npx webpack --watch",
     "prepare": "rm -rf ./dist && npm run build"
   },
   "repository": {
