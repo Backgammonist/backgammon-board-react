@@ -4,7 +4,8 @@
   "description": "Simplistic backgammon board in react",
   "main": "dist/bundle.js",
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "prepare": "rm -rf ./dist && npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,10 +22,6 @@
     "url": "https://github.com/Backgammonist/backgammon-board/issues"
   },
   "homepage": "https://github.com/Backgammonist/backgammon-board#readme",
-  "dependencies": {
-    "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.4"
-  },
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
@@ -41,6 +38,8 @@
     "source-map-loader": "^0.2.4",
     "typescript": "^3.4.3",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.4"
   }
 }
