@@ -26,8 +26,6 @@ module.exports = {
     },
   },
 
-  watch: true,
-
   externals: {
     react: {
       commonjs: 'react',
