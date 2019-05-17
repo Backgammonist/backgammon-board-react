@@ -1,10 +1,8 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { PointProps } from './index';
 
-// const borderSize = 20
 const fieldWidth = 36
-// $bar-width: $border-size * 1.5;
-
+const borderSize = 20;
 
 export const StyledPoint = styled.div<PointProps>`
   position: relative;
@@ -17,16 +15,25 @@ export const StyledPoint = styled.div<PointProps>`
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 ${fieldWidth / 2}px 120px ${fieldWidth / 2}px;
-    border-color: transparent transparent red transparent;
     content: '';
     position: absolute;
-    bottom: ${fieldWidth / 2}px;
     left: 0;
+    z-index: 1;
     opacity: ${props => props.ordinal % 2 == 0 ? 1 : 0.5 };
+    ${props => props.reverse ? css`
+      border-width: 120px ${fieldWidth / 2}px 0 ${fieldWidth / 2}px;
+      border-color: red transparent transparent transparent;
+      top: ${fieldWidth / 2}px;
+      ` : css`
+      border-width: 0 ${fieldWidth / 2}px 120px ${fieldWidth / 2}px;
+      border-color: transparent transparent red transparent;
+      bottom: ${fieldWidth / 2}px;
+    `}
   }
+  
   .checkers-wrapper {
     position: relative;
+    z-index: 2;
   }
 
   .field-ordinal {
@@ -39,5 +46,6 @@ export const StyledPoint = styled.div<PointProps>`
     font-size: 12px;
     background-color: white;
     color: red;
+    height: ${borderSize}px;
   }
 `

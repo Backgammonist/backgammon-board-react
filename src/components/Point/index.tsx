@@ -8,20 +8,15 @@ export interface PointProps {
   ordinal: number
   playerType?: string
   numberOfCheckers?: number
+  reverse?: boolean
 }
 
-const createCheckersRenderer = (numberOfCheckers: number, playerType: PlayerType): React.ReactNode => (
-  <div>
-    {
-      [...new Array(numberOfCheckers)].map((n, i) => <Checker key={i} type={playerType} />)
-    }
-  </div>
-)
+const createCheckersRenderer = (numberOfCheckers: number, playerType: PlayerType): React.ReactNode => [...new Array(numberOfCheckers)].map((n, i) => <Checker key={i} type={playerType} />)
 
-export const Point: React.FC<PointProps> = ({ ordinal, playerType, numberOfCheckers }) => {
+export const Point: React.FC<PointProps> = ({ ordinal, playerType, numberOfCheckers, reverse }) => {
   const typedPlayerType = playerType === 'player' ? PlayerType.PLAYER : PlayerType.OPPONENT
   return (
-    <StyledPoint ordinal={ordinal}>
+    <StyledPoint ordinal={ordinal} reverse={reverse}>
       <div className="field-ordinal">
         <span>{ordinal}</span>
       </div>
