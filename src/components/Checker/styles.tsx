@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import {CheckerProps, PlayerType} from './index'
+import {CheckerProps} from './index'
+import { PlayerType } from '../../types/index';
+
 
 export const StyledChecker = styled.div<CheckerProps>`
     width: ${props => props.size};

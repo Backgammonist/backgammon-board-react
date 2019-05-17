@@ -1,16 +1,12 @@
 import * as React from 'react'
 import { StyledChecker } from './styles'
+import { PlayerType } from '../../types/index';
 
 export interface CheckerProps {
   size?: string
   type: PlayerType
 }
 
-export enum PlayerType {
-  'PLAYER' = 'player',
-  'OPPONENT' = 'opponent'
-}
-
-export const Checker: React.FC<CheckerProps> = ({size = '50px', type}) => (
+export const Checker: React.FC<CheckerProps> = ({size = '30px', type}) => (
   <StyledChecker size={size} type={type} />
 )
