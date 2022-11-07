@@ -1,19 +1,9 @@
 {
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "commonjs",
-        "target": "es6",
-        "jsx": "react",
-        "types": [
-            "react",
-            "styled-components",
-        ],
-    },
-    "include": [
-        "./src/**/*"
-    ],
-    
-  
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "react",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "skipLibCheck": true
+  }
 }
