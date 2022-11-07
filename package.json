@@ -4,7 +4,9 @@
   "description": "Simplistic backgammon board in react",
   "main": "dist/bundle.js",
   "scripts": {
-    "build": "tsc --jsx react"
+    "build": "tsc --jsx react",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,22 @@
   },
   "homepage": "https://github.com/Backgammonist/backgammon-board#readme",
   "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/builder-webpack4": "^6.5.13",
+    "@storybook/manager-webpack4": "^6.5.13",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.25",
     "@types/styled-components": "^5.1.26",
+    "babel-loader": "^8.3.0",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "styled-components": "^5.3.6",
     "typescript": "^4.8.4"
-  }
+  },
+  "dependencies": {}
 }

@@ -22,11 +22,11 @@ export const StyledPoint = styled.div<PointProps>`
     opacity: ${props => props.ordinal % 2 == 0 ? 1 : 0.5 };
     ${props => props.reverse ? css`
       border-width: 120px ${fieldWidth / 2}px 0 ${fieldWidth / 2}px;
-      border-color: red transparent transparent transparent;
+      border-color: #333 transparent transparent transparent;
       top: ${fieldWidth / 2}px;
       ` : css`
       border-width: 0 ${fieldWidth / 2}px 120px ${fieldWidth / 2}px;
-      border-color: transparent transparent red transparent;
+      border-color: transparent transparent #333 transparent;
       bottom: ${fieldWidth / 2}px;
     `}
   }
@@ -45,7 +45,7 @@ export const StyledPoint = styled.div<PointProps>`
     color: white;
     font-size: 12px;
     background-color: white;
-    color: red;
+    color: #333;
     height: ${borderSize}px;
   }
 `
