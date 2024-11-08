@@ -7,7 +7,7 @@ type Positions = {
 }
 
 interface BoardProps<T> {
-    ['data']: {['positions']: T} 
+    ['data']: { ['positions']: T }
 }
 
 const getCheckersforPoint = (pos: number, positions: Positions) => {
@@ -25,10 +25,10 @@ export const Board: React.FC<BoardProps<Positions>> = ({ data }) => {
 
     return (<StyledBoard>
         <StyledBottomHalfBoard>
-            {points.slice(0, points.length / 2).map((a, b) => <Point {...getCheckersforPoint(b, data.positions)} key={b} ordinal={b + 1} />)}
+            {points.slice(0, points.length / 2).map((_, b) => <Point {...getCheckersforPoint(b, data.positions)} key={b} ordinal={b + 1} />)}
         </StyledBottomHalfBoard>
         <StyledTopHalfBoard>
-            {points.slice(points.length / 2, points.length).map((a, b) => <Point {...getCheckersforPoint(b+12, data.positions)} reverse key={b} ordinal={b + 13} />)}
+            {points.slice(points.length / 2, points.length).map((_, b) => <Point {...getCheckersforPoint(b + 12, data.positions)} reverse key={b} ordinal={b + 13} />)}
         </StyledTopHalfBoard>
 
     </StyledBoard>)
