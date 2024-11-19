@@ -5,9 +5,7 @@ import { PlayerType } from './src/types';
 
 const randomPositions = () => {
     const takenByPlayer = new Map();
-    let playerCheckers = 0;
     const takenByOpponent = new Map();
-    let opponenetCheckers = 0;
 
     const getPosition = (isPlayer) => {
         const pos = Math.floor(Math.random() * 25) + 1;
@@ -18,42 +16,35 @@ const randomPositions = () => {
         const position = getPosition(isPlayer);
 
         if (isPlayer) {
-            if (playerCheckers >= 15) {
-                placeChecker(false);
-            } else if (takenByOpponent.has(position)) {
+            if (takenByOpponent.has(position)) {
                 placeChecker(true);
             }
             else if (takenByPlayer.has(position)) {
                 takenByPlayer.set(position, takenByPlayer.get(position) + 1);
-                playerCheckers++;
             } else {
                 takenByPlayer.set(position, 1);
-                playerCheckers++;
             }
 
         } else {
-            if (playerCheckers >= 15) {
-                placeChecker(true);
-            } else if (takenByPlayer.has(position)) {
+            if (takenByPlayer.has(position)) {
                 placeChecker(false);
             } else if (takenByOpponent.has(position)) {
-                takenByPlayer.set(position, takenByOpponent.get(position) + 1);
-                opponenetCheckers++;
+                takenByOpponent.set(position, takenByOpponent.get(position) + 1);
             } else {
                 takenByOpponent.set(position, 1);
-                opponenetCheckers++;
             }
-
         }
     };
 
-    Array.from({ length: 30 }).forEach((_, i) => placeChecker(i % 2));
-    debugger
-    return takenByOpponent;
+    Array.from({ length: 30 }).forEach((_, i) => placeChecker(i % 2 === 0));
+    
+    return [
+        ...Array.from(takenByPlayer.entries()).map(([position, numberOfCheckers]) => ({ position, playerType: PlayerType.PLAYER, numberOfCheckers })),
+        ...Array.from(takenByOpponent.entries()).map(([position, numberOfCheckers]) => ({ position, playerType: PlayerType.OPPONENT, numberOfCheckers })),
+    ];
 };
 
 const positions = randomPositions();
-// console.log(positions);
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

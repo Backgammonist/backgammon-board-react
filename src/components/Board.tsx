@@ -25,7 +25,7 @@ export const Board: React.FC = () => {
     } = dimensions;
 
     return (
-        <svg key="board" width="100%" height="100%" viewBox={`0 0 ${boardWidth - borderWidth} ${boardHeight * sidebarRationModifier}`} xmlns="http://www.w3.org/2000/svg">
+        <svg key="board" width="100vw" height="100vh" viewBox={`0 0 ${boardWidth - borderWidth} ${boardHeight * sidebarRationModifier}`} xmlns="http://www.w3.org/2000/svg">
             <svg key="main-board" x={(sidebarWidth * sidebarRationModifier - borderWidth)} width={boardWidth - sidebarWidth * sidebarRationModifier} height={boardHeight * sidebarRationModifier} viewBox={`0 0 ${boardWidth} ${boardHeight}`} xmlns="http://www.w3.org/2000/svg">
                 {/* Background */}
                 <rect key="background" x="0" y="0" width={boardWidth} height={boardHeight} fill={colours.backgroundColor} />
