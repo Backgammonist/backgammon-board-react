@@ -16,5 +16,5 @@ export const PipCounter: React.FC<PipCountProps> = ({ playerType }) => {
         return isPlayer ? acc + current.numberOfCheckers * normalisedPosition : acc;
     }, 0);
 
-    return <text x={panelWidth + borderWidth + barWidth / 2} y={playerType === PlayerType.PLAYER ? (boardHeight - 2 * borderWidth) : (2 * borderWidth)} textAnchor="middle" alignmentBaseline="middle" fill={pointNumberColor} fontSize="12">{pip}</text>
+    return <text x={panelWidth + borderWidth + barWidth / 2} y={playerType === PlayerType.PLAYER ? (boardHeight - 2 * borderWidth) : (2 * borderWidth)} textAnchor="middle" alignmentBaseline="middle" fill={pointNumberColor} fontSize="1em">{pip}</text>
 };

@@ -9,6 +9,7 @@ export const presets = {
         playerCheckerBorderColor: '#000',
         opponentCheckerColor: '#000',
         opponentCheckerBorderColor: '#fff',
+        doublingCubeColor: '#fff',
     },
     warm: {
         backgroundColor: '#deb887',
@@ -20,5 +21,6 @@ export const presets = {
         playerCheckerBorderColor: '#8b0000',
         opponentCheckerColor: '#fffafa',
         opponentCheckerBorderColor: '#696969',
+        doublingCubeColor: '#fff',
     },
 };

@@ -5,6 +5,7 @@ import { Point } from "./Point";
 import { Sidebar } from "./Sidebar";
 import { PipCounter } from "./PipCounter";
 import { PlayerType } from "../types";
+import { Dice } from "./Dice";
 
 
 export const Board: React.FC = () => {
@@ -21,7 +22,7 @@ export const Board: React.FC = () => {
         pointWidth,
         boardHeight,
         sidebarWidth,
-        sidebarRationModifier
+        sidebarRationModifier,
     } = dimensions;
 
     return (
@@ -46,7 +47,7 @@ export const Board: React.FC = () => {
                         {[...new Array(6)].map((_, i) => <Point bottom key={`left-top-${i}`} x={i * pointWidth} y={0} odd={i % 2 === 0} ordinal={i + 1} />)}
                     </g>
                 </g>
-
+                <Dice />
                 {/* Points - Right Side */}
                 <g key="right-side" transform={`translate(${(boardWidth + barWidth) / 2}, ${borderWidth})`}>
                     {/* Top points */}
@@ -60,7 +61,7 @@ export const Board: React.FC = () => {
                 {positions && positions.map(({ position, numberOfCheckers = 1, playerType }) => {
                     const checkers = [...new Array(numberOfCheckers)].map((_, i) => {
                         if (position === 0 || position === 25) return null;
-                        return <Checker key={`${playerType}-${position}-${i}`} x={position} y={i + 1} playerType={playerType} />
+                        return <Checker key={`${playerType}-${position}-${i}`} x={position} y={i + 1} playerType={playerType} totalOnPoint={numberOfCheckers} />
                     });
                     return <React.Fragment key={`checkers-${playerType}-${position}`}>{checkers}</React.Fragment>;
                 })}
