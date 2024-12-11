@@ -7,10 +7,10 @@ export class Dimensions {
 
     constructor(barWidth = 50, borderWidth = 20) {
         this._boardWidth = 640;
-        this._boardHeight = this._boardWidth * 0.65;
+        this._boardHeight = this._boardWidth * 0.75;
         this._barWidth = barWidth;
         this._borderWidth = borderWidth;
-        this._checkerStroke = 2;
+        this._checkerStroke = 1;
     }
 
     get boardWidth() {
@@ -42,7 +42,7 @@ export class Dimensions {
     }
 
     get checkerWidth() {
-        return this.pointWidth * 0.7;
+        return this.pointWidth * 0.8;
     }
 
     get sidebarWidth() {
