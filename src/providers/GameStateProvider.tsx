@@ -1,6 +1,10 @@
 import React, { createContext, useContext } from 'react';
 import { BoardStateState, PlayerType } from '../types';
 
+// TODO: validate game state positions:
+// - each position value has to be unique
+// - opponent cannot be on 0, player cannot be on 25
+
 const initialState: BoardStateState = {
   positions: [
     { playerType: PlayerType.PLAYER, position: 24, numberOfCheckers: 2 },

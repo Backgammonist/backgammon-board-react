@@ -5,6 +5,6 @@ import { PlayerType } from './src/types';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <Backgammon />
+        <Backgammon dice={[6, 6]} />
     </StrictMode>,
 )

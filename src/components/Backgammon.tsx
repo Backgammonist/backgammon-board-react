@@ -2,10 +2,15 @@ import { DimensionProvider, GameStateProvider, PositionProvider, ThemeProvider }
 import { BoardStateState } from "../types";
 import { Board } from "./Board";
 
-export const Backgammon: React.FC<BoardStateState> = ({ theme, positions, preset }) => {
+export const Backgammon: React.FC<BoardStateState> = ({ theme, positions, preset, doublingCube, dice }) => {
+    const gameState = {
+        ...(positions && { positions }),
+        ...(doublingCube && { doublingCube }),
+        ...(dice && { dice })
+    }
     return (
         <ThemeProvider {...(theme && { theme })} {...(preset && { preset })}>
-            <GameStateProvider {...(positions && { gameState: {positions} })}>
+            <GameStateProvider gameState={gameState}>
                 <DimensionProvider>
                     <PositionProvider>
                         <Board />

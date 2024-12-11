@@ -10,7 +10,7 @@ export class Dimensions {
         this._boardHeight = this._boardWidth * 0.75;
         this._barWidth = barWidth;
         this._borderWidth = borderWidth;
-        this._checkerStroke = 2;
+        this._checkerStroke = 1;
     }
 
     get boardWidth() {
@@ -42,7 +42,7 @@ export class Dimensions {
     }
 
     get checkerWidth() {
-        return this.pointWidth * 0.875;
+        return this.pointWidth * 0.8;
     }
 
     get sidebarWidth() {
@@ -55,5 +55,17 @@ export class Dimensions {
 
     get sidebarRationModifier() {
         return (this._boardWidth - this.sidebarWidth) / this._boardWidth
+    }
+
+    get cubeWidth() {
+        return this.checkerWidth + this._checkerStroke;
+    }
+
+    get dieWidth() {
+        return this.checkerWidth * 1.2 + this._checkerStroke;
+    }
+
+    get dieDotSize() {
+        return this.dieWidth / 10;
     }
 }
