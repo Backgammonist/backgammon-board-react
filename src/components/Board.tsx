@@ -44,7 +44,7 @@ export const Board: React.FC = () => {
 
                     {/* Bottom points */}
                     <g key="bottom-points" transform={`scale(1 -1) translate(0, -${boardHeight - borderWidth * 2})`}>
-                        {[...new Array(6)].map((_, i) => <Point bottom key={`left-top-${i}`} x={i * pointWidth} y={0} odd={i % 2 === 0} ordinal={i + 1} />)}
+                        {[...new Array(6)].map((_, i) => <Point bottom key={`left-top-${i}`} x={i * pointWidth} y={0} odd={i % 2 === 1} ordinal={i + 1} />)}
                     </g>
                 </g>
                 <Dice />
@@ -55,7 +55,7 @@ export const Board: React.FC = () => {
 
                     {/* Bottom points */}
                     <g key="bottom-points" transform={`scale(1 -1) translate(0, -${boardHeight - borderWidth * 2})`}>
-                        {[...new Array(6)].map((_, i) => <Point bottom key={`right-top-${i}`} x={i * pointWidth} y={0} odd={i % 2 === 0} ordinal={i + 7} />)}
+                        {[...new Array(6)].map((_, i) => <Point bottom key={`right-top-${i}`} x={i * pointWidth} y={0} odd={i % 2 === 1} ordinal={i + 7} />)}
                     </g>
                 </g>
                 {positions && positions.map(({ position, numberOfCheckers = 1, playerType }) => {
