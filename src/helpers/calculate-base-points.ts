@@ -1,7 +1,7 @@
 import { useDimensions } from "../providers";
 
 export const calculateBasePoints = (
-  dimensions: ReturnType<typeof useDimensions>
+  dimensions: ReturnType<typeof useDimensions>,
 ) => {
   const {
     barWidth,
