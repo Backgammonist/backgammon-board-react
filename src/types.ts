@@ -63,7 +63,7 @@ export type BoardStateState = {
   positions?: Position[];
   theme?: Theme;
   preset?: keyof typeof presets;
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
   doublingCube?: DoublingCube;
   dice?: readonly [DieValue, DieValue] | [DieValue] | [];
 };
