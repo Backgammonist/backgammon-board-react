@@ -16,11 +16,9 @@ export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
   const { boardHeight, dieWidth, dieDotSize, panelWidth, barWidth } =
     useDimensions();
   const dieBackgroundColor =
-    colorSchema === PlayerType.PLAYER
-      ? playerCheckerColor
-      : opponentCheckerColor;
+    colorSchema === "player" ? playerCheckerColor : opponentCheckerColor;
   const dotFillColor =
-    colorSchema === PlayerType.PLAYER
+    colorSchema === "player"
       ? playerCheckerBorderColor
       : opponentCheckerBorderColor;
 

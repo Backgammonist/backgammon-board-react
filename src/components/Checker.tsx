@@ -21,11 +21,9 @@ export const Checker: React.FC<CheckerProps> = ({
     opponentCheckerBorderColor,
   } = useTheme();
   const fill =
-    playerType === PlayerType.PLAYER
-      ? playerCheckerColor
-      : opponentCheckerColor;
+    playerType === "player" ? playerCheckerColor : opponentCheckerColor;
   const stroke =
-    playerType === PlayerType.PLAYER
+    playerType === "player"
       ? playerCheckerBorderColor
       : opponentCheckerBorderColor;
   const pos = usePosition();

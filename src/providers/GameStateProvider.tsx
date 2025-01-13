@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { BoardStateState, PlayerType } from "../types";
+import { BoardStateState } from "../types";
 
 // TODO: validate game state positions:
 // - each position value has to be unique
@@ -7,15 +7,15 @@ import { BoardStateState, PlayerType } from "../types";
 
 const initialState: BoardStateState = {
   positions: [
-    { playerType: PlayerType.PLAYER, position: 24, numberOfCheckers: 2 },
-    { playerType: PlayerType.PLAYER, position: 13, numberOfCheckers: 5 },
-    { playerType: PlayerType.PLAYER, position: 8, numberOfCheckers: 3 },
-    { playerType: PlayerType.PLAYER, position: 6, numberOfCheckers: 5 },
+    { playerType: "player", position: 24, numberOfCheckers: 2 },
+    { playerType: "player", position: 13, numberOfCheckers: 5 },
+    { playerType: "player", position: 8, numberOfCheckers: 3 },
+    { playerType: "player", position: 6, numberOfCheckers: 5 },
 
-    { playerType: PlayerType.OPPONENT, position: 1, numberOfCheckers: 2 },
-    { playerType: PlayerType.OPPONENT, position: 12, numberOfCheckers: 5 },
-    { playerType: PlayerType.OPPONENT, position: 17, numberOfCheckers: 3 },
-    { playerType: PlayerType.OPPONENT, position: 19, numberOfCheckers: 5 },
+    { playerType: "opponent", position: 1, numberOfCheckers: 2 },
+    { playerType: "opponent", position: 12, numberOfCheckers: 5 },
+    { playerType: "opponent", position: 17, numberOfCheckers: 3 },
+    { playerType: "opponent", position: 19, numberOfCheckers: 5 },
   ],
 };
 

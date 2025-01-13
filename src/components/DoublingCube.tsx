@@ -1,17 +1,16 @@
 import { useDimensions, useTheme } from "../providers";
 import type { DoublingCube as DoublingCubeType } from "../types";
-import { PlayerType } from "../types";
 
 export const DoublingCube: React.FC<DoublingCubeType> = ({ owner, value }) => {
   const { doublingCubeColor } = useTheme();
   const { boardHeight, sidebarWidth, cubeWidth, borderWidth } = useDimensions();
 
   const xPos = (sidebarWidth - cubeWidth) / 2;
-  // const yPos = (boardHeight - cubeWidth) / 2 + (owner === PlayerType.PLAYER ? cubeWidth / 2 : -(cubeWidth / 2));
+  // const yPos = (boardHeight - cubeWidth) / 2 + (owner === "player" ? cubeWidth / 2 : -(cubeWidth / 2));
   const yPos =
     owner === null
       ? boardHeight / 2 - cubeWidth / 2
-      : owner === PlayerType.PLAYER
+      : owner === "player"
         ? boardHeight - cubeWidth - borderWidth / 2
         : borderWidth / 2;
 

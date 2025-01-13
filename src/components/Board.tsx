@@ -4,7 +4,6 @@ import { Checker } from "./Checker";
 import { Point } from "./Point";
 import { Sidebar } from "./Sidebar";
 import { PipCounter } from "./PipCounter";
-import { PlayerType } from "../types";
 import { Dice } from "./Dice";
 
 export const Board: React.FC = () => {
@@ -181,11 +180,8 @@ export const Board: React.FC = () => {
           height={boardHeight - borderWidth * 2}
           fill={colours.borderColor}
         />
-        <PipCounter
-          key="opponent-pip-counter"
-          playerType={PlayerType.OPPONENT}
-        />
-        <PipCounter key="player-pip-counter" playerType={PlayerType.PLAYER} />
+        <PipCounter key="opponent-pip-counter" playerType="opponent" />
+        <PipCounter key="player-pip-counter" playerType="player" />
       </svg>
       <Sidebar key="sidebar" />
     </svg>
