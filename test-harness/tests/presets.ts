@@ -1,4 +1,4 @@
-import { BoardStateState, PlayerType } from "../../src/types";
+import { BoardStateState, Theme } from "../../src/types";
 
 const randomPositions = () => {
   const takenByPlayer = new Map();
@@ -37,58 +37,73 @@ const randomPositions = () => {
     ...Array.from(takenByPlayer.entries()).map(
       ([position, numberOfCheckers]) => ({
         position,
-        playerType: PlayerType.PLAYER,
+        playerType: "player",
         numberOfCheckers,
       }),
     ),
     ...Array.from(takenByOpponent.entries()).map(
       ([position, numberOfCheckers]) => ({
         position,
-        playerType: PlayerType.OPPONENT,
+        playerType: "opponent",
         numberOfCheckers,
       }),
     ),
   ];
 };
 
-export const presets: Record<string, BoardStateState["positions"]> = {
+export const positionsPresets: Record<string, BoardStateState["positions"]> = {
   default: [
-    { position: 1, playerType: PlayerType.OPPONENT, numberOfCheckers: 2 },
-    { position: 6, playerType: PlayerType.PLAYER, numberOfCheckers: 5 },
-    { position: 8, playerType: PlayerType.PLAYER, numberOfCheckers: 3 },
-    { position: 12, playerType: PlayerType.OPPONENT, numberOfCheckers: 5 },
-    { position: 13, playerType: PlayerType.PLAYER, numberOfCheckers: 5 },
-    { position: 17, playerType: PlayerType.OPPONENT, numberOfCheckers: 3 },
-    { position: 19, playerType: PlayerType.OPPONENT, numberOfCheckers: 5 },
-    { position: 24, playerType: PlayerType.PLAYER, numberOfCheckers: 2 },
+    { position: 1, playerType: "opponent", numberOfCheckers: 2 },
+    { position: 6, playerType: "player", numberOfCheckers: 5 },
+    { position: 8, playerType: "player", numberOfCheckers: 3 },
+    { position: 12, playerType: "opponent", numberOfCheckers: 5 },
+    { position: 13, playerType: "player", numberOfCheckers: 5 },
+    { position: 17, playerType: "opponent", numberOfCheckers: 3 },
+    { position: 19, playerType: "opponent", numberOfCheckers: 5 },
+    { position: 24, playerType: "player", numberOfCheckers: 2 },
   ],
   overload: [
-    { position: 0, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 1, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 2, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 3, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 4, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 5, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 6, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 7, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 8, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 9, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 10, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 11, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 12, playerType: PlayerType.PLAYER, numberOfCheckers: 15 },
-    { position: 13, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 14, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 15, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 16, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 17, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 18, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 19, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 20, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 21, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 22, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 23, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 24, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
-    { position: 25, playerType: PlayerType.OPPONENT, numberOfCheckers: 15 },
+    { position: 0, playerType: "player", numberOfCheckers: 15 },
+    { position: 1, playerType: "player", numberOfCheckers: 15 },
+    { position: 2, playerType: "player", numberOfCheckers: 15 },
+    { position: 3, playerType: "player", numberOfCheckers: 15 },
+    { position: 4, playerType: "player", numberOfCheckers: 15 },
+    { position: 5, playerType: "player", numberOfCheckers: 15 },
+    { position: 6, playerType: "player", numberOfCheckers: 15 },
+    { position: 7, playerType: "player", numberOfCheckers: 15 },
+    { position: 8, playerType: "player", numberOfCheckers: 15 },
+    { position: 9, playerType: "player", numberOfCheckers: 15 },
+    { position: 10, playerType: "player", numberOfCheckers: 15 },
+    { position: 11, playerType: "player", numberOfCheckers: 15 },
+    { position: 12, playerType: "player", numberOfCheckers: 15 },
+    { position: 13, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 14, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 15, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 16, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 17, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 18, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 19, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 20, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 21, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 22, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 23, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 24, playerType: "opponent", numberOfCheckers: 15 },
+    { position: 25, playerType: "opponent", numberOfCheckers: 15 },
   ],
   random: randomPositions(),
+};
+
+export const themePresets: Record<string, Theme> = {
+  crazy: {
+    backgroundColor: "#f0f0f0",
+    borderColor: "red",
+    pointColor: "green",
+    pointNumberColor: "red",
+    altPointColor: "blue",
+    playerCheckerColor: "rebeccapurple",
+    playerCheckerBorderColor: "yellow",
+    opponentCheckerColor: "red",
+    opponentCheckerBorderColor: "green",
+    doublingCubeColor: "red",
+  },
 };

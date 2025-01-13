@@ -1,5 +1,4 @@
 import { useDimensions, useGameState } from "../providers";
-import { PlayerType } from "../types";
 import { Die } from "./Die";
 
 export const Dice = () => {
@@ -12,10 +11,10 @@ export const Dice = () => {
 
   return (
     <>
-      {dice?.[0] && <Die value={dice[0]} colorSchema={PlayerType.PLAYER} />}
+      {dice?.[0] && <Die value={dice[0]} colorSchema="player" />}
       {dice?.[1] && (
         <g transform={`translate(${dieWidth + borderWidth / 2}, 0)`}>
-          <Die value={dice[1]} colorSchema={PlayerType.OPPONENT} />
+          <Die value={dice[1]} colorSchema="opponent" />
         </g>
       )}
     </>

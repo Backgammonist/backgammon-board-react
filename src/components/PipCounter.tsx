@@ -13,7 +13,7 @@ export const PipCounter: React.FC<PipCountProps> = ({ playerType }) => {
   const pip = positions?.reduce((acc, current) => {
     const isPlayer = current.playerType === playerType;
     const normalisedPosition =
-      current.playerType === PlayerType.PLAYER
+      current.playerType === "player"
         ? current.position
         : 25 - current.position;
     return isPlayer ? acc + current.numberOfCheckers * normalisedPosition : acc;
@@ -23,7 +23,7 @@ export const PipCounter: React.FC<PipCountProps> = ({ playerType }) => {
     <text
       x={panelWidth + borderWidth + barWidth / 2}
       y={
-        playerType === PlayerType.PLAYER
+        playerType === "player"
           ? boardHeight - 2 * borderWidth
           : 2 * borderWidth
       }

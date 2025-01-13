@@ -1,5 +1,4 @@
 import { useDimensions, useGameState, useTheme } from "../providers";
-import { PlayerType } from "../types";
 import { DoublingCube } from "./DoublingCube";
 
 export const Sidebar: React.FC = () => {
@@ -19,15 +18,14 @@ export const Sidebar: React.FC = () => {
   const playerOut =
     positions
       ?.filter(
-        ({ position, playerType }) =>
-          playerType === PlayerType.PLAYER && position === 0,
+        ({ position, playerType }) => playerType === "player" && position === 0,
       )
       .reduce((acc, current) => acc + current.numberOfCheckers, 0) ?? 0;
   const opponentOut =
     positions
       ?.filter(
         ({ position, playerType }) =>
-          playerType === PlayerType.OPPONENT && position === 25,
+          playerType === "opponent" && position === 25,
       )
       .reduce((acc, current) => acc + current.numberOfCheckers, 0) ?? 0;
 

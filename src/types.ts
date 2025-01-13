@@ -1,9 +1,6 @@
 import { presets } from "./helpers/presets";
 
-export enum PlayerType {
-  PLAYER = "player",
-  OPPONENT = "opponent",
-}
+export type PlayerType = "player" | "opponent";
 
 export type DieValue = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -78,4 +75,5 @@ export type Theme = {
   playerCheckerBorderColor: string;
   opponentCheckerColor: string;
   opponentCheckerBorderColor: string;
+  doublingCubeColor: string;
 };
