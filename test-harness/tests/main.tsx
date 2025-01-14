@@ -2,6 +2,7 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Backgammon } from "../../src/components/Backgammon";
 import { positionsPresets, themePresets } from "./presets";
+import "@fontsource/open-sans";
 
 const urlParams = new URLSearchParams(window.location.search);
 const position = urlParams.get("position");
