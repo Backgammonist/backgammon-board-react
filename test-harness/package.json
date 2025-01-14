@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "e2e:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@playwright/test": "^1.49.1",
