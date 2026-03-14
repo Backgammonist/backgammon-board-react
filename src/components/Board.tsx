@@ -3,8 +3,8 @@ import { useDimensions, useGameState, useTheme } from "../providers";
 import { Checker } from "./Checker";
 import { Point } from "./Point";
 import { Sidebar } from "./Sidebar";
-import { PipCounter } from "./PipCounter";
 import { Dice } from "./Dice";
+import { Bar } from "./Bar";
 
 export const Board: React.FC = () => {
   const dimensions = useDimensions();
@@ -15,7 +15,6 @@ export const Board: React.FC = () => {
   const {
     boardWidth,
     barWidth,
-    panelWidth,
     borderWidth,
     pointWidth,
     boardHeight,
@@ -172,16 +171,7 @@ export const Board: React.FC = () => {
             );
           })}
         {/* Middle bar */}
-        <rect
-          key="bar"
-          x={panelWidth + borderWidth}
-          y={borderWidth}
-          width={barWidth}
-          height={boardHeight - borderWidth * 2}
-          fill={colours.borderColor}
-        />
-        <PipCounter key="opponent-pip-counter" playerType="opponent" />
-        <PipCounter key="player-pip-counter" playerType="player" />
+        <Bar />
       </svg>
       <Sidebar key="sidebar" />
     </svg>

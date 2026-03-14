@@ -2,9 +2,9 @@ import React, { createContext, useContext } from "react";
 import { calculateBasePoints } from "../helpers/calculate-base-points";
 import { useDimensions } from "./DimensionProvider";
 
-const PositionContext = createContext<Record<number, { x: number; y: number }>>(
-  {},
-);
+const PositionContext = createContext<
+  Record<number | "bar", { x: number; y: number }>
+>({ bar: { x: 0, y: 0 } });
 
 export const usePosition = () => useContext(PositionContext);
 
