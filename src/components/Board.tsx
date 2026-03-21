@@ -153,7 +153,8 @@ export const Board: React.FC = () => {
         {positions &&
           positions.map(({ position, numberOfCheckers = 1, playerType }) => {
             const checkers = [...new Array(numberOfCheckers)].map((_, i) => {
-              if (position === 0 || position === 25) return null;
+              if (position === 0 || position === 25 || position === "bar")
+                return null;
               return (
                 <Checker
                   key={`${playerType}-${position}-${i}`}

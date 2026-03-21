@@ -54,27 +54,14 @@ export const Checker: React.FC<CheckerProps> = ({
       : opponentCheckerBorderColor;
   const pos = usePosition();
   const { checkerWidth, checkerStroke } = useDimensions();
-  if (x === "bar") {
-    ["player", "opponent"].map((playerType, i) => {
-      return (
-        <circle
-          key={`bar-${playerType}-${i}`}
-          cx={pos["bar"].x}
-          cy={pos["bar"].y + (i === 0 ? -checkerWidth : checkerWidth)}
-          r={checkerWidth / 2}
-          stroke={stroke}
-          strokeWidth={checkerStroke}
-          strokeOpacity={1}
-          fill={fill}
-        />
-      );
-    });
-  }
-
-  const bottomModifier = x! === "bar" && parseInt(x) > 12 ? 1 : -1;
+  const bottomModifier =
+    x === "bar" ? (playerType === "opponent" ? 1 : -1) : x > 12 ? 1 : -1;
   const baseYOffset = checkerWidth * bottomModifier;
 
+  const barInitialOffset =
+    x === "bar" ? (checkerWidth / 1.8) * bottomModifier : 0;
   const yOffset =
+    barInitialOffset +
     (y - 1) * baseYOffset * (totalOnPoint > 5 ? 4 / (totalOnPoint - 1) : 1);
   return (
     <circle
