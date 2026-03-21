@@ -12,9 +12,9 @@ export default defineConfig({
       name: "BackgammonBoard",
       fileName: (format) => `index.${format === "es" ? "js" : "umd.cjs"}`,
     },
-    // sourcemap: true,
+    sourcemap: true,
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "styled-components"],
       output: {
         banner: `'use client';`,
         globals: {

@@ -1,4 +1,9 @@
-webpack.config.js
-tsconfig.json
-.eslintrc.js
-.gitignore
+# The "files" field in package.json already restricts the published package
+# to only the dist/ directory. This file exists to explicitly exclude anything
+# that npm includes by default regardless of the "files" field.
+*.test.*
+*.spec.*
+src/
+test-harness/
+.github/
+.husky/
