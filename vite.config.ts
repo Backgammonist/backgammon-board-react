@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), dts({ include: ["src"] })],
   build: {
@@ -12,7 +11,6 @@ export default defineConfig({
       name: "BackgammonBoard",
       fileName: (format) => `index.${format === "es" ? "js" : "umd.cjs"}`,
     },
-    // sourcemap: true,
     rollupOptions: {
       external: ["react", "react-dom"],
       output: {
