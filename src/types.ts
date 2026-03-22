@@ -57,6 +57,8 @@ export type DoublingCube = {
   owner?: null | PlayerType;
 };
 
+export type Direction = "clockwise" | "anticlockwise";
+
 export type BoardStateState = {
   positions?: Position[];
   theme?: Theme;
@@ -64,6 +66,7 @@ export type BoardStateState = {
   options?: Record<string, unknown>;
   doublingCube?: DoublingCube;
   dice?: readonly [DieValue, DieValue] | [DieValue] | [];
+  direction?: Direction;
 };
 
 export type Theme = {

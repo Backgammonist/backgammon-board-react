@@ -22,17 +22,26 @@ export const Board: React.FC = () => {
     sidebarRationModifier,
   } = dimensions;
 
+  const direction = gameState?.direction ?? "clockwise";
+  const isClockwise = direction === "clockwise";
+
+  const sidebarRenderedWidth = sidebarWidth * sidebarRationModifier;
+  const mainBoardX = isClockwise ? 0 : sidebarRenderedWidth - borderWidth;
+  const sidebarX = isClockwise
+    ? boardWidth - sidebarRenderedWidth - borderWidth
+    : 0;
+
   return (
     <svg
       key="board"
-      width="100vw"
-      height="100vh"
+      width="100%"
+      height="100%"
       viewBox={`0 0 ${boardWidth - borderWidth} ${boardHeight * sidebarRationModifier}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <svg
         key="main-board"
-        x={sidebarWidth * sidebarRationModifier - borderWidth}
+        x={mainBoardX}
         width={boardWidth - sidebarWidth * sidebarRationModifier}
         height={boardHeight * sidebarRationModifier}
         viewBox={`0 0 ${boardWidth} ${boardHeight}`}
@@ -95,7 +104,7 @@ export const Board: React.FC = () => {
               x={i * pointWidth}
               y={0}
               odd={i % 2 === 0}
-              ordinal={24 - i}
+              ordinal={isClockwise ? 13 + i : 24 - i}
             />
           ))}
 
@@ -111,7 +120,7 @@ export const Board: React.FC = () => {
                 x={i * pointWidth}
                 y={0}
                 odd={i % 2 === 1}
-                ordinal={i + 1}
+                ordinal={isClockwise ? 12 - i : i + 1}
               />
             ))}
           </g>
@@ -129,7 +138,7 @@ export const Board: React.FC = () => {
               x={i * pointWidth}
               y={0}
               odd={i % 2 === 0}
-              ordinal={18 - i}
+              ordinal={isClockwise ? 19 + i : 18 - i}
             />
           ))}
 
@@ -145,7 +154,7 @@ export const Board: React.FC = () => {
                 x={i * pointWidth}
                 y={0}
                 odd={i % 2 === 1}
-                ordinal={i + 7}
+                ordinal={isClockwise ? 6 - i : i + 7}
               />
             ))}
           </g>
@@ -174,7 +183,7 @@ export const Board: React.FC = () => {
         {/* Middle bar */}
         <Bar />
       </svg>
-      <Sidebar key="sidebar" />
+      <Sidebar key="sidebar" x={sidebarX} />
     </svg>
   );
 };

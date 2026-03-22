@@ -1,7 +1,7 @@
 import { useDimensions, useGameState, useTheme } from "../providers";
 import { DoublingCube } from "./DoublingCube";
 
-export const Sidebar: React.FC = () => {
+export const Sidebar: React.FC<{ x?: number }> = ({ x = 0 }) => {
   const { borderColor, playerCheckerColor, opponentCheckerColor } = useTheme();
   const {
     boardWidth,
@@ -37,6 +37,7 @@ export const Sidebar: React.FC = () => {
   return (
     <svg
       key="sidebar"
+      x={x}
       width={(sidebarWidth * (boardWidth - sidebarWidth)) / boardWidth}
       height={(boardHeight * (boardWidth - sidebarWidth)) / boardWidth}
       viewBox={`0 0 ${sidebarWidth} ${boardHeight}`}
