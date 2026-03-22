@@ -13,6 +13,11 @@ const theme = themePresets[themeParam!];
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Backgammon dice={[6, 6]} theme={theme} positions={positions} />
+    <Backgammon
+      dice={[1, 6]}
+      theme={theme}
+      positions={positions}
+      direction="clockwise"
+    />
   </StrictMode>,
 );

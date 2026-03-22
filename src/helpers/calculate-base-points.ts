@@ -1,7 +1,9 @@
 import { useDimensions } from "../providers";
+import { Direction } from "../types";
 
 export const calculateBasePoints = (
   dimensions: ReturnType<typeof useDimensions>,
+  direction: Direction = "clockwise",
 ) => {
   const {
     barWidth,
@@ -12,169 +14,83 @@ export const calculateBasePoints = (
     checkerStroke,
     boardWidth,
   } = dimensions;
+
+  const topY = borderWidth + checkerWidth / 2 + checkerStroke;
+  const bottomY = boardHeight - borderWidth - checkerWidth / 2 - checkerStroke;
+  const xLeft = (i: number) => borderWidth + pointWidth / 2 + pointWidth * i;
+  const xRight = (i: number) =>
+    borderWidth +
+    checkerWidth / 2 +
+    checkerStroke * 3 +
+    barWidth +
+    pointWidth * (6 + i);
+
+  const bar = { x: boardWidth / 2, y: boardHeight / 2 };
+
+  if (direction === "anticlockwise") {
+    return {
+      bar,
+      // Top-left: 24, 23, 22, 21, 20, 19
+      24: { x: xLeft(0), y: topY },
+      23: { x: xLeft(1), y: topY },
+      22: { x: xLeft(2), y: topY },
+      21: { x: xLeft(3), y: topY },
+      20: { x: xLeft(4), y: topY },
+      19: { x: xLeft(5), y: topY },
+      // Top-right: 18, 17, 16, 15, 14, 13
+      18: { x: xRight(0), y: topY },
+      17: { x: xRight(1), y: topY },
+      16: { x: xRight(2), y: topY },
+      15: { x: xRight(3), y: topY },
+      14: { x: xRight(4), y: topY },
+      13: { x: xRight(5), y: topY },
+      // Bottom-left: 1, 2, 3, 4, 5, 6
+      1: { x: xLeft(0), y: bottomY },
+      2: { x: xLeft(1), y: bottomY },
+      3: { x: xLeft(2), y: bottomY },
+      4: { x: xLeft(3), y: bottomY },
+      5: { x: xLeft(4), y: bottomY },
+      6: { x: xLeft(5), y: bottomY },
+      // Bottom-right: 7, 8, 9, 10, 11, 12
+      7: { x: xRight(0), y: bottomY },
+      8: { x: xRight(1), y: bottomY },
+      9: { x: xRight(2), y: bottomY },
+      10: { x: xRight(3), y: bottomY },
+      11: { x: xRight(4), y: bottomY },
+      12: { x: xRight(5), y: bottomY },
+    };
+  }
+
+  // Clockwise layout (default)
   return {
-    bar: {
-      x: boardWidth / 2,
-      y: boardHeight / 2,
-    },
-    24: {
-      x: borderWidth + pointWidth / 2,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    23: {
-      x: borderWidth + pointWidth / 2 + pointWidth,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    22: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 2,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    21: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 3,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    20: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 4,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    19: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 5,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-
-    18: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 6,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    17: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 7,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    16: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 8,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    15: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 9,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    14: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 10,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-    13: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 11,
-      y: borderWidth + checkerWidth / 2 + checkerStroke,
-    },
-
-    1: {
-      x: borderWidth + pointWidth / 2,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    2: {
-      x: borderWidth + pointWidth / 2 + pointWidth,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    3: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 2,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    4: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 3,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    5: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 4,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    6: {
-      x: borderWidth + pointWidth / 2 + pointWidth * 5,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-
-    7: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 6,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    8: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 7,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    9: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 8,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    10: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 9,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    11: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 10,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
-    12: {
-      x:
-        borderWidth +
-        checkerWidth / 2 +
-        checkerStroke * 3 +
-        barWidth +
-        pointWidth * 11,
-      y: boardHeight - borderWidth - checkerWidth / 2 - checkerStroke,
-    },
+    bar,
+    // Top-left: 13, 14, 15, 16, 17, 18
+    13: { x: xLeft(0), y: topY },
+    14: { x: xLeft(1), y: topY },
+    15: { x: xLeft(2), y: topY },
+    16: { x: xLeft(3), y: topY },
+    17: { x: xLeft(4), y: topY },
+    18: { x: xLeft(5), y: topY },
+    // Top-right: 19, 20, 21, 22, 23, 24
+    19: { x: xRight(0), y: topY },
+    20: { x: xRight(1), y: topY },
+    21: { x: xRight(2), y: topY },
+    22: { x: xRight(3), y: topY },
+    23: { x: xRight(4), y: topY },
+    24: { x: xRight(5), y: topY },
+    // Bottom-left: 12, 11, 10, 9, 8, 7
+    12: { x: xLeft(0), y: bottomY },
+    11: { x: xLeft(1), y: bottomY },
+    10: { x: xLeft(2), y: bottomY },
+    9: { x: xLeft(3), y: bottomY },
+    8: { x: xLeft(4), y: bottomY },
+    7: { x: xLeft(5), y: bottomY },
+    // Bottom-right: 6, 5, 4, 3, 2, 1
+    6: { x: xRight(0), y: bottomY },
+    5: { x: xRight(1), y: bottomY },
+    4: { x: xRight(2), y: bottomY },
+    3: { x: xRight(3), y: bottomY },
+    2: { x: xRight(4), y: bottomY },
+    1: { x: xRight(5), y: bottomY },
   };
 };

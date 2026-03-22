@@ -14,11 +14,13 @@ export const Backgammon: React.FC<BoardStateState> = ({
   preset,
   doublingCube,
   dice,
+  direction = "clockwise",
 }) => {
   const gameState = {
     ...(positions && { positions }),
     ...(doublingCube && { doublingCube }),
     ...(dice && { dice }),
+    direction,
   };
   return (
     <ThemeProvider {...(theme && { theme })} {...(preset && { preset })}>

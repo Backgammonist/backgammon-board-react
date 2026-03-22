@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from "react";
 import { calculateBasePoints } from "../helpers/calculate-base-points";
 import { useDimensions } from "./DimensionProvider";
+import { useGameState } from "./GameStateProvider";
 
 const PositionContext = createContext<
   Record<number | "bar", { x: number; y: number }>
@@ -16,7 +17,11 @@ export const PositionProvider: React.FC<PositionProviderProps> = ({
   children,
 }) => {
   const dimensions = useDimensions();
-  const positions = calculateBasePoints(dimensions);
+  const gameState = useGameState();
+  const positions = calculateBasePoints(
+    dimensions,
+    gameState?.direction ?? "clockwise",
+  );
   return (
     <PositionContext.Provider value={positions}>
       {children}
