@@ -63,13 +63,14 @@ Positions follow the standard backgammon numbering from the **player's** perspec
 
 ### `<Backgammon>`
 
-| Prop           | Type                                       | Default     | Description                              |
-| -------------- | ------------------------------------------ | ----------- | ---------------------------------------- |
-| `positions`    | `Position[]`                               | `[]`        | Checker placement on the board           |
-| `dice`         | `[DieValue, DieValue] \| [DieValue] \| []` | `[]`        | Dice to display (1–6 each)               |
-| `doublingCube` | `DoublingCube`                             | —           | Doubling cube state                      |
-| `preset`       | `'default' \| 'warm'`                      | `'default'` | Built-in colour theme                    |
-| `theme`        | `Theme`                                    | —           | Custom colour theme (overrides `preset`) |
+| Prop           | Type                                       | Default       | Description                                          |
+| -------------- | ------------------------------------------ | ------------- | ---------------------------------------------------- |
+| `positions`    | `Position[]`                               | `[]`          | Checker placement on the board                       |
+| `dice`         | `[DieValue, DieValue] \| [DieValue] \| []` | `[]`          | Dice to display (1–6 each)                           |
+| `doublingCube` | `DoublingCube`                             | —             | Doubling cube state                                  |
+| `direction`    | `'clockwise' \| 'anticlockwise'`           | `'clockwise'` | Direction the player moves checkers around the board |
+| `preset`       | `'default' \| 'warm'`                      | `'default'`   | Built-in colour theme                                |
+| `theme`        | `Theme`                                    | —             | Custom colour theme (overrides `preset`)             |
 
 ### `Position`
 
@@ -234,6 +235,7 @@ import type {
   PlayerType,
   DieValue,
   DoublingCube,
+  Direction,
   Theme,
 } from "backgammon-board-react";
 ```
