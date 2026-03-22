@@ -10,8 +10,13 @@ export const calculateBasePoints = (
     checkerWidth,
     boardHeight,
     checkerStroke,
+    boardWidth,
   } = dimensions;
   return {
+    bar: {
+      x: boardWidth / 2,
+      y: boardHeight / 2,
+    },
     24: {
       x: borderWidth + pointWidth / 2,
       y: borderWidth + checkerWidth / 2 + checkerStroke,

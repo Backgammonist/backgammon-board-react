@@ -89,6 +89,8 @@ export const positionsPresets: Record<string, BoardStateState["positions"]> = {
     { position: 23, playerType: "opponent", numberOfCheckers: 15 },
     { position: 24, playerType: "opponent", numberOfCheckers: 15 },
     { position: 25, playerType: "opponent", numberOfCheckers: 15 },
+    { position: "bar", playerType: "opponent", numberOfCheckers: 15 },
+    { position: "bar", playerType: "player", numberOfCheckers: 15 },
   ],
   random: randomPositions(),
 };

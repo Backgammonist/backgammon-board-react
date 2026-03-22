@@ -4,7 +4,7 @@ export const presets = {
     borderColor: "#ff7f50",
     pointColor: "#008080",
     pointNumberColor: "#000",
-    altPointColor: "#ffd700",
+    altPointColor: "#00d4d4",
     playerCheckerColor: "#fff",
     playerCheckerBorderColor: "#000",
     opponentCheckerColor: "#000",

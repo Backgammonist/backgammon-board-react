@@ -32,7 +32,8 @@ type Position = {
     | 22
     | 23
     | 24
-    | 25;
+    | 25
+    | "bar";
   numberOfCheckers:
     | 1
     | 2

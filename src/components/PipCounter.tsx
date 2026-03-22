@@ -13,9 +13,11 @@ export const PipCounter: React.FC<PipCountProps> = ({ playerType }) => {
   const pip = positions?.reduce((acc, current) => {
     const isPlayer = current.playerType === playerType;
     const normalisedPosition =
-      current.playerType === "player"
-        ? current.position
-        : 25 - current.position;
+      current.position === "bar"
+        ? 25
+        : current.playerType === "player"
+          ? current.position
+          : 25 - current.position;
     return isPlayer ? acc + current.numberOfCheckers * normalisedPosition : acc;
   }, 0);
 

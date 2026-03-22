@@ -17,7 +17,7 @@ export const Point: React.FC<PointProps> = ({
 }) => {
   const { pointWidth, pointHeight, borderWidth } = useDimensions();
 
-  const { pointNumberColor, pointColor } = useTheme();
+  const { pointNumberColor, pointColor, altPointColor } = useTheme();
 
   const transform = bottom ? `scale(1 -1) translate(0, ${borderWidth})` : "";
 
@@ -38,7 +38,7 @@ export const Point: React.FC<PointProps> = ({
       </text>
       <polygon
         points={`${x},${y} ${x + width},${y} ${x + width / 2},${y + height}`}
-        fill={pointColor}
+        fill={odd ? pointColor : altPointColor}
         fillOpacity={odd ? "1" : "0.4"}
       />
       ;

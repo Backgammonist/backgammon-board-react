@@ -189,7 +189,6 @@ export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
       );
       break;
   }
-  console.log(value);
   return (
     <g
       transform={`translate(${panelWidth + barWidth + panelWidth / 2 - dieWidth / 2}, ${boardHeight / 2 - dieWidth / 2})`}

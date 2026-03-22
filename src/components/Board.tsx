@@ -3,8 +3,8 @@ import { useDimensions, useGameState, useTheme } from "../providers";
 import { Checker } from "./Checker";
 import { Point } from "./Point";
 import { Sidebar } from "./Sidebar";
-import { PipCounter } from "./PipCounter";
 import { Dice } from "./Dice";
+import { Bar } from "./Bar";
 
 export const Board: React.FC = () => {
   const dimensions = useDimensions();
@@ -15,7 +15,6 @@ export const Board: React.FC = () => {
   const {
     boardWidth,
     barWidth,
-    panelWidth,
     borderWidth,
     pointWidth,
     boardHeight,
@@ -154,7 +153,8 @@ export const Board: React.FC = () => {
         {positions &&
           positions.map(({ position, numberOfCheckers = 1, playerType }) => {
             const checkers = [...new Array(numberOfCheckers)].map((_, i) => {
-              if (position === 0 || position === 25) return null;
+              if (position === 0 || position === 25 || position === "bar")
+                return null;
               return (
                 <Checker
                   key={`${playerType}-${position}-${i}`}
@@ -172,16 +172,7 @@ export const Board: React.FC = () => {
             );
           })}
         {/* Middle bar */}
-        <rect
-          key="bar"
-          x={panelWidth + borderWidth}
-          y={borderWidth}
-          width={barWidth}
-          height={boardHeight - borderWidth * 2}
-          fill={colours.borderColor}
-        />
-        <PipCounter key="opponent-pip-counter" playerType="opponent" />
-        <PipCounter key="player-pip-counter" playerType="player" />
+        <Bar />
       </svg>
       <Sidebar key="sidebar" />
     </svg>
