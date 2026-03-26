@@ -1,3 +1,4 @@
+import React from "react";
 import { useDimensions, useGameState, useTheme } from "../providers";
 import { PlayerType } from "../types";
 

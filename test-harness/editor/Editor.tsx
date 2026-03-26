@@ -3,7 +3,7 @@ import { Backgammon } from "../../src/components/Backgammon";
 import { presets } from "../../src/helpers/presets";
 import { positionsPresets } from "../tests/presets";
 import type {
-  BoardStateState,
+  BoardState,
   DieValue,
   Direction,
   DoublingCube,
@@ -31,7 +31,7 @@ const EMPTY_POS_STATE: PositionEditorState = {
 };
 
 function positionsToState(
-  positions: BoardStateState["positions"],
+  positions: BoardState["positions"],
 ): PositionEditorState {
   const state = structuredClone(EMPTY_POS_STATE);
   for (const pos of positions ?? []) {
@@ -55,10 +55,8 @@ function positionsToState(
   return state;
 }
 
-function stateToPositions(
-  s: PositionEditorState,
-): BoardStateState["positions"] {
-  const result: NonNullable<BoardStateState["positions"]> = [];
+function stateToPositions(s: PositionEditorState): BoardState["positions"] {
+  const result: NonNullable<BoardState["positions"]> = [];
   s.points.forEach((pt, i) => {
     if (pt.owner && pt.count > 0) {
       result.push({
@@ -602,7 +600,7 @@ export function Editor() {
 
   const previewRef = useRef<HTMLDivElement>(null);
 
-  const dice: BoardStateState["dice"] =
+  const dice: BoardState["dice"] =
     diceCount === 0 ? [] : diceCount === 1 ? [die1] : [die1, die2];
 
   const positions = stateToPositions(posState);

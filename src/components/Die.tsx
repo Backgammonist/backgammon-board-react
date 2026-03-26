@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useDimensions, useTheme } from "../providers";
 import { DieValue, PlayerType } from "../types";
 
@@ -6,7 +8,7 @@ type DieProps = {
   colorSchema: PlayerType;
 };
 
-export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
+export const Die: React.FC<DieProps> = ({ value, colorSchema }) => {
   const {
     playerCheckerColor,
     playerCheckerBorderColor,
@@ -57,14 +59,12 @@ export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
             r={dieDotSize}
             fill={dotFillColor}
           />
-          ;
           <circle
             cx={(dieWidth / 4) * 3}
             cy={dieWidth / 2}
             r={dieDotSize}
             fill={dotFillColor}
           />
-          ;
         </>
       );
       break;
@@ -101,7 +101,6 @@ export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
             r={dieDotSize}
             fill={dotFillColor}
           />
-          ;
         </>
       );
       break;
@@ -156,7 +155,6 @@ export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
             r={dieDotSize}
             fill={dotFillColor}
           />
-          ;
         </>
       );
       break;
@@ -206,13 +204,6 @@ export const Die: React.FC<DieProps> = ({ value = 2, colorSchema }) => {
           fill={dieBackgroundColor}
         />
         {dots}
-        {/* <circle cx={dieWidth / 4} cy={dieWidth / 2} r={dieDotSize} fill={dotFillColor} />
-            <circle cx={dieWidth / 4 * 3} cy={dieWidth / 2} r={dieDotSize} fill={dotFillColor} />
-            <circle cx={dieWidth / 4} cy={dieWidth / 4} r={dieDotSize} fill={dotFillColor} />
-            <circle cx={dieWidth / 4} cy={dieWidth / 4} r={dieDotSize} fill={dotFillColor} />
-            <circle cx={dieWidth / 4} cy={dieWidth / 4 * 3} r={dieDotSize} fill={dotFillColor} />
-            <circle cx={dieWidth / 4 * 3} cy={dieWidth / 4} r={dieDotSize} fill={dotFillColor} />
-            <circle cx={dieWidth / 4 * 3} cy={dieWidth / 4 * 3} r={dieDotSize} fill={dotFillColor} /> */}
       </svg>
     </g>
   );

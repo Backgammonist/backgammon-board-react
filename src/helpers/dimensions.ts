@@ -53,7 +53,7 @@ export class Dimensions {
     return this._checkerStroke;
   }
 
-  get sidebarRationModifier() {
+  get sidebarRatioModifier() {
     return (this._boardWidth - this.sidebarWidth) / this._boardWidth;
   }
 

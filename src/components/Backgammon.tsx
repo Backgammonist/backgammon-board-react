@@ -1,14 +1,15 @@
 "use client";
+import React from "react";
 import {
   DimensionProvider,
   GameStateProvider,
   PositionProvider,
   ThemeProvider,
 } from "../providers";
-import { BoardStateState } from "../types";
+import { BoardState } from "../types";
 import { Board } from "./Board";
 
-export const Backgammon: React.FC<BoardStateState> = ({
+export const Backgammon: React.FC<BoardState> = ({
   theme,
   positions,
   preset,
