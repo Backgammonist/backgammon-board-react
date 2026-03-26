@@ -2,6 +2,10 @@
 
 A React component library for rendering a backgammon board. Displays positions, dice, and the doubling cube as a scalable SVG. Fully typed with TypeScript.
 
+![](./backgammon-board-react.png)
+
+Use the online editor:<br/>https://backgammonist.github.io/backgammon-board-react/
+
 ## Installation
 
 ```bash

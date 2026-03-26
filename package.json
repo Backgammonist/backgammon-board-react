@@ -1,6 +1,6 @@
 {
   "name": "backgammon-board-react",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simplistic backgammon board in react",
   "type": "module",
   "files": [
@@ -20,7 +20,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "format": "prettier --write  --ignore-unknown .",
-    "prepare": "husky",
+    "prepare": "husky || true",
+    "prepublishOnly": "npm run build",
     "commitlint": "commitlint --edit $1"
   },
   "repository": {

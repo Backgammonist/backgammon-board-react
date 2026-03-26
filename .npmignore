@@ -1,4 +1,10 @@
-webpack.config.js
+src/
+test-harness/
+.husky/
+.github/
+vite.config.ts
 tsconfig.json
-.eslintrc.js
-.gitignore
+eslint.config.mjs
+commitlint.config.mjs
+.prettierrc*
+.prettierignore
