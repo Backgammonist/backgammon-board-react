@@ -19,13 +19,13 @@ export const Board: React.FC = () => {
     pointWidth,
     boardHeight,
     sidebarWidth,
-    sidebarRationModifier,
+    sidebarRatioModifier,
   } = dimensions;
 
   const direction = gameState?.direction ?? "clockwise";
   const isClockwise = direction === "clockwise";
 
-  const sidebarRenderedWidth = sidebarWidth * sidebarRationModifier;
+  const sidebarRenderedWidth = sidebarWidth * sidebarRatioModifier;
   const mainBoardX = isClockwise ? 0 : sidebarRenderedWidth - borderWidth;
   const sidebarX = isClockwise
     ? boardWidth - sidebarRenderedWidth - borderWidth
@@ -36,14 +36,14 @@ export const Board: React.FC = () => {
       key="board"
       width="100%"
       height="100%"
-      viewBox={`0 0 ${boardWidth - borderWidth} ${boardHeight * sidebarRationModifier}`}
+      viewBox={`0 0 ${boardWidth - borderWidth} ${boardHeight * sidebarRatioModifier}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <svg
         key="main-board"
         x={mainBoardX}
-        width={boardWidth - sidebarWidth * sidebarRationModifier}
-        height={boardHeight * sidebarRationModifier}
+        width={boardWidth - sidebarWidth * sidebarRatioModifier}
+        height={boardHeight * sidebarRatioModifier}
         viewBox={`0 0 ${boardWidth} ${boardHeight}`}
         xmlns="http://www.w3.org/2000/svg"
       >

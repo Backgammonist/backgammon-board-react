@@ -1,4 +1,4 @@
-import { BoardStateState, Theme } from "../../src/types";
+import { BoardState, Theme } from "../../src/types";
 
 const randomPositions = () => {
   const takenByPlayer = new Map();
@@ -51,7 +51,7 @@ const randomPositions = () => {
   ];
 };
 
-export const positionsPresets: Record<string, BoardStateState["positions"]> = {
+export const positionsPresets: Record<string, BoardState["positions"]> = {
   default: [
     { position: 1, playerType: "opponent", numberOfCheckers: 2 },
     { position: 6, playerType: "player", numberOfCheckers: 5 },

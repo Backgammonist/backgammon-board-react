@@ -1,3 +1,4 @@
+import React from "react";
 import { useDimensions, useTheme } from "../providers";
 
 type PointProps = {
@@ -41,7 +42,6 @@ export const Point: React.FC<PointProps> = ({
         fill={odd ? pointColor : altPointColor}
         fillOpacity={odd ? "1" : "0.4"}
       />
-      ;
     </g>
   );
 };

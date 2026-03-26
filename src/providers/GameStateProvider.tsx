@@ -1,11 +1,7 @@
 import React, { createContext, useContext } from "react";
-import { BoardStateState } from "../types";
+import { BoardState } from "../types";
 
-// TODO: validate game state positions:
-// - each position value has to be unique
-// - opponent cannot be on 0, player cannot be on 25
-
-const initialState: BoardStateState = {
+const initialState: BoardState = {
   positions: [
     { playerType: "player", position: 24, numberOfCheckers: 2 },
     { playerType: "player", position: 13, numberOfCheckers: 5 },
@@ -19,13 +15,13 @@ const initialState: BoardStateState = {
   ],
 };
 
-const GameStateContext = createContext<BoardStateState>(initialState);
+const GameStateContext = createContext<BoardState>(initialState);
 
 export const useGameState = () => useContext(GameStateContext);
 
 type GameStateProviderProps = {
   children: React.ReactNode;
-  gameState?: BoardStateState;
+  gameState?: BoardState;
 };
 
 export const GameStateProvider: React.FC<GameStateProviderProps> = ({

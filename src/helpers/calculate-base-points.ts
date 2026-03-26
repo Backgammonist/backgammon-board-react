@@ -1,8 +1,9 @@
-import { useDimensions } from "../providers";
 import { Direction } from "../types";
 
+import { Dimensions } from "./dimensions";
+
 export const calculateBasePoints = (
-  dimensions: ReturnType<typeof useDimensions>,
+  dimensions: Dimensions,
   direction: Direction = "clockwise",
 ) => {
   const {

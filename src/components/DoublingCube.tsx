@@ -1,3 +1,4 @@
+import React from "react";
 import { useDimensions, useTheme } from "../providers";
 import type { DoublingCube as DoublingCubeType } from "../types";
 
@@ -6,7 +7,6 @@ export const DoublingCube: React.FC<DoublingCubeType> = ({ owner, value }) => {
   const { boardHeight, sidebarWidth, cubeWidth, borderWidth } = useDimensions();
 
   const xPos = (sidebarWidth - cubeWidth) / 2;
-  // const yPos = (boardHeight - cubeWidth) / 2 + (owner === "player" ? cubeWidth / 2 : -(cubeWidth / 2));
   const yPos =
     owner === null
       ? boardHeight / 2 - cubeWidth / 2

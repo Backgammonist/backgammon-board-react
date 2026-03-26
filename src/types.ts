@@ -2,70 +2,34 @@ import { presets } from "./helpers/presets";
 
 export type PlayerType = "player" | "opponent";
 
-export type DieValue = 1 | 2 | 3 | 4 | 5 | 6;
+export type NumberRange<
+  N extends number,
+  Acc extends number[] = [],
+> = Acc["length"] extends N
+  ? Acc[number]
+  : NumberRange<N, [...Acc, Acc["length"]]>;
 
-type Position = {
+export type DieValue = Exclude<NumberRange<7>, 0>;
+
+export type Position = {
   playerType: PlayerType;
-  position:
-    | 0
-    | 1
-    | 2
-    | 3
-    | 4
-    | 5
-    | 6
-    | 7
-    | 8
-    | 9
-    | 10
-    | 11
-    | 12
-    | 13
-    | 14
-    | 15
-    | 16
-    | 17
-    | 18
-    | 19
-    | 20
-    | 21
-    | 22
-    | 23
-    | 24
-    | 25
-    | "bar";
-  numberOfCheckers:
-    | 1
-    | 2
-    | 3
-    | 4
-    | 5
-    | 6
-    | 7
-    | 8
-    | 9
-    | 10
-    | 11
-    | 12
-    | 13
-    | 14
-    | 15;
+  position: NumberRange<26> | "bar";
+  numberOfCheckers: Exclude<NumberRange<16>, 0>;
 };
 
 export type DoublingCube = {
-  value: 2 | 4 | 8 | 16 | 32;
+  value: 2 | 4 | 8 | 16 | 32 | 64;
   owner?: null | PlayerType;
 };
 
 export type Direction = "clockwise" | "anticlockwise";
 
-export type BoardStateState = {
+export type BoardState = {
   positions?: Position[];
   theme?: Theme;
   preset?: keyof typeof presets;
-  options?: Record<string, unknown>;
   doublingCube?: DoublingCube;
-  dice?: readonly [DieValue, DieValue] | [DieValue] | [];
+  dice?: readonly [DieValue, DieValue] | readonly [DieValue] | [];
   direction?: Direction;
 };
 
