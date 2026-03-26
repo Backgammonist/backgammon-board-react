@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 /test-harness/test-results/
 /test-harness/playwright-report/
+/test-harness/dist/
 /blob-report/
 /playwright/.cache/
 /dist/
