@@ -1,0 +1,52 @@
+name: Deploy Editor to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install root dependencies
+        run: npm install -g pnpm && pnpm install
+
+      - name: Install test-harness dependencies
+        working-directory: ./test-harness
+        run: pnpm install
+
+      - name: Build editor
+        working-directory: ./test-harness
+        run: pnpm exec vite build --base=/backgammon-board/
+
+      - name: Add root redirect to editor
+        run: |
+          echo '<meta http-equiv="refresh" content="0; url=editor/">' > test-harness/dist/index.html
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: test-harness/dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
