@@ -585,6 +585,7 @@ function SegmentedControl<T extends string | number>({
 // ── Main editor ─────────────────────────────────────────────────────────────
 
 export function Editor() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [direction, setDirection] = useState<Direction>("clockwise");
   const [diceCount, setDiceCount] = useState<0 | 1 | 2>(2);
   const [die1, setDie1] = useState<DieValue>(1);
@@ -689,80 +690,110 @@ export function Editor() {
       {/* ── Controls panel ── */}
       <div
         style={{
-          width: 300,
+          width: sidebarOpen ? 300 : 36,
           flexShrink: 0,
-          overflowY: "auto",
-          padding: "16px 14px",
+          overflowY: sidebarOpen ? "auto" : "hidden",
+          overflowX: "hidden",
           background: "#fff",
           borderRight: "1px solid #e0e0e0",
+          transition: "width 0.2s ease",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <h2
+        <div
           style={{
-            margin: "0 0 18px",
-            fontSize: 16,
-            fontWeight: 700,
-            color: "#1a1a1a",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: sidebarOpen ? "16px 14px 0" : "10px 0",
+            flexShrink: 0,
+            flexDirection: sidebarOpen ? "row" : "column",
           }}
         >
-          Board Editor
-        </h2>
-
-        {/* Direction */}
-        <Section>
-          <SectionLabel>Direction</SectionLabel>
-          <SegmentedControl
-            options={[
-              { label: "Clockwise", value: "clockwise" as Direction },
-              { label: "Anticlockwise", value: "anticlockwise" as Direction },
-            ]}
-            value={direction}
-            onChange={setDirection}
-          />
-        </Section>
-
-        {/* Dice */}
-        <Section>
-          <SectionLabel>Dice</SectionLabel>
-          <div style={{ marginBottom: 8 }}>
+          <h2
+            style={{
+              margin: sidebarOpen ? "0 0 18px" : 0,
+              fontSize: 16,
+              fontWeight: 700,
+              color: "#1a1a1a",
+              whiteSpace: "nowrap",
+              opacity: sidebarOpen ? 1 : 0,
+              transition: "opacity 0.15s ease",
+            }}
+          >
+            Board Editor
+          </h2>
+          <button
+            onClick={() => setSidebarOpen((o) => !o)}
+            title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+            style={{
+              width: 24,
+              height: 24,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "1px solid #e0e0e0",
+              borderRadius: 4,
+              background: "transparent",
+              cursor: "pointer",
+              fontSize: 10,
+              color: "#aaa",
+              flexShrink: 0,
+              marginBottom: sidebarOpen ? 18 : 0,
+            }}
+          >
+            {sidebarOpen ? "◀" : "▶"}
+          </button>
+        </div>
+        <div
+          style={{
+            flex: 1,
+            overflowY: "auto",
+            padding: sidebarOpen ? "0 14px 16px" : 0,
+            opacity: sidebarOpen ? 1 : 0,
+            transition: "opacity 0.15s ease",
+            pointerEvents: sidebarOpen ? "auto" : "none",
+          }}
+        >
+          {/* Direction */}
+          <Section>
+            <SectionLabel>Direction</SectionLabel>
             <SegmentedControl
               options={[
-                { label: "None", value: 0 as 0 | 1 | 2 },
-                { label: "1 die", value: 1 as 0 | 1 | 2 },
-                { label: "2 dice", value: 2 as 0 | 1 | 2 },
+                { label: "Clockwise", value: "clockwise" as Direction },
+                { label: "Anticlockwise", value: "anticlockwise" as Direction },
               ]}
-              value={diceCount}
-              onChange={setDiceCount}
+              value={direction}
+              onChange={setDirection}
             />
-          </div>
-          {diceCount >= 1 && (
-            <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>
-                  Die 1
-                </div>
-                <select
-                  style={selectStyle}
-                  value={die1}
-                  onChange={(e) => setDie1(Number(e.target.value) as DieValue)}
-                >
-                  {[1, 2, 3, 4, 5, 6].map((v) => (
-                    <option key={v} value={v}>
-                      {v}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {diceCount === 2 && (
+          </Section>
+
+          {/* Dice */}
+          <Section>
+            <SectionLabel>Dice</SectionLabel>
+            <div style={{ marginBottom: 8 }}>
+              <SegmentedControl
+                options={[
+                  { label: "None", value: 0 as 0 | 1 | 2 },
+                  { label: "1 die", value: 1 as 0 | 1 | 2 },
+                  { label: "2 dice", value: 2 as 0 | 1 | 2 },
+                ]}
+                value={diceCount}
+                onChange={setDiceCount}
+              />
+            </div>
+            {diceCount >= 1 && (
+              <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>
-                    Die 2
+                    Die 1
                   </div>
                   <select
                     style={selectStyle}
-                    value={die2}
+                    value={die1}
                     onChange={(e) =>
-                      setDie2(Number(e.target.value) as DieValue)
+                      setDie1(Number(e.target.value) as DieValue)
                     }
                   >
                     {[1, 2, 3, 4, 5, 6].map((v) => (
@@ -772,136 +803,160 @@ export function Editor() {
                     ))}
                   </select>
                 </div>
-              )}
-            </div>
-          )}
-        </Section>
+                {diceCount === 2 && (
+                  <div style={{ flex: 1 }}>
+                    <div
+                      style={{ fontSize: 11, color: "#999", marginBottom: 4 }}
+                    >
+                      Die 2
+                    </div>
+                    <select
+                      style={selectStyle}
+                      value={die2}
+                      onChange={(e) =>
+                        setDie2(Number(e.target.value) as DieValue)
+                      }
+                    >
+                      {[1, 2, 3, 4, 5, 6].map((v) => (
+                        <option key={v} value={v}>
+                          {v}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              </div>
+            )}
+          </Section>
 
-        {/* Doubling cube */}
-        <Section>
-          <SectionLabel>
-            <label
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-                cursor: "pointer",
-              }}
-            >
-              <input
-                type="checkbox"
-                checked={showDoublingCube}
-                onChange={(e) => setShowDoublingCube(e.target.checked)}
-              />
-              Doubling Cube
-            </label>
-          </SectionLabel>
-          {showDoublingCube && (
-            <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>
-                  Value
+          {/* Doubling cube */}
+          <Section>
+            <SectionLabel>
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  cursor: "pointer",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={showDoublingCube}
+                  onChange={(e) => setShowDoublingCube(e.target.checked)}
+                />
+                Doubling Cube
+              </label>
+            </SectionLabel>
+            {showDoublingCube && (
+              <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>
+                    Value
+                  </div>
+                  <select
+                    style={selectStyle}
+                    value={doublingValue}
+                    onChange={(e) =>
+                      setDoublingValue(
+                        Number(e.target.value) as DoublingCube["value"],
+                      )
+                    }
+                  >
+                    {DOUBLING_VALUES.map((v) => (
+                      <option key={v} value={v}>
+                        {v}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <select
-                  style={selectStyle}
-                  value={doublingValue}
-                  onChange={(e) =>
-                    setDoublingValue(
-                      Number(e.target.value) as DoublingCube["value"],
-                    )
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>
+                    Owner
+                  </div>
+                  <select
+                    style={selectStyle}
+                    value={doublingOwner ?? "none"}
+                    onChange={(e) =>
+                      setDoublingOwner(
+                        e.target.value === "none"
+                          ? null
+                          : (e.target.value as "player" | "opponent"),
+                      )
+                    }
+                  >
+                    <option value="none">None</option>
+                    <option value="player">Player</option>
+                    <option value="opponent">Opponent</option>
+                  </select>
+                </div>
+              </div>
+            )}
+          </Section>
+
+          {/* Positions */}
+          <Section>
+            <SectionLabel>Positions</SectionLabel>
+            <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
+              {(["default", "overload", "random"] as const).map((name) => (
+                <button
+                  key={name}
+                  style={presetBtnStyle}
+                  onClick={() =>
+                    setPosState(positionsToState(positionsPresets[name]))
                   }
                 >
-                  {DOUBLING_VALUES.map((v) => (
-                    <option key={v} value={v}>
-                      {v}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: "#999", marginBottom: 4 }}>
-                  Owner
-                </div>
-                <select
-                  style={selectStyle}
-                  value={doublingOwner ?? "none"}
-                  onChange={(e) =>
-                    setDoublingOwner(
-                      e.target.value === "none"
-                        ? null
-                        : (e.target.value as "player" | "opponent"),
-                    )
-                  }
-                >
-                  <option value="none">None</option>
-                  <option value="player">Player</option>
-                  <option value="opponent">Opponent</option>
-                </select>
-              </div>
-            </div>
-          )}
-        </Section>
-
-        {/* Positions */}
-        <Section>
-          <SectionLabel>Positions</SectionLabel>
-          <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
-            {(["default", "overload", "random"] as const).map((name) => (
+                  {name}
+                </button>
+              ))}
               <button
-                key={name}
-                style={presetBtnStyle}
-                onClick={() =>
-                  setPosState(positionsToState(positionsPresets[name]))
-                }
+                style={{ ...presetBtnStyle, color: "#888" }}
+                onClick={() => setPosState(structuredClone(EMPTY_POS_STATE))}
               >
-                {name}
+                clear
               </button>
-            ))}
-            <button
-              style={{ ...presetBtnStyle, color: "#888" }}
-              onClick={() => setPosState(structuredClone(EMPTY_POS_STATE))}
-            >
-              clear
-            </button>
-          </div>
-          <PositionEditor value={posState} onChange={setPosState} />
-        </Section>
+            </div>
+            <PositionEditor value={posState} onChange={setPosState} />
+          </Section>
 
-        {/* Theme */}
-        <div>
-          <SectionLabel>Theme</SectionLabel>
-          <select
-            style={{
-              ...selectStyle,
-              marginBottom: 12,
-              textTransform: "capitalize",
-            }}
-            onChange={(e) =>
-              applyThemePreset(e.target.value as keyof typeof presets)
-            }
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Load preset…
-            </option>
-            {(Object.keys(presets) as (keyof typeof presets)[]).map((name) => (
-              <option
-                key={name}
-                value={name}
-                style={{ textTransform: "capitalize" }}
-              >
-                {name.charAt(0).toUpperCase() + name.slice(1)}
+          {/* Theme */}
+          <div>
+            <SectionLabel>Theme</SectionLabel>
+            <select
+              style={{
+                ...selectStyle,
+                marginBottom: 12,
+                textTransform: "capitalize",
+              }}
+              onChange={(e) =>
+                applyThemePreset(e.target.value as keyof typeof presets)
+              }
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Load preset…
               </option>
+              {(Object.keys(presets) as (keyof typeof presets)[]).map(
+                (name) => (
+                  <option
+                    key={name}
+                    value={name}
+                    style={{ textTransform: "capitalize" }}
+                  >
+                    {name.charAt(0).toUpperCase() + name.slice(1)}
+                  </option>
+                ),
+              )}
+            </select>
+            {THEME_LABELS.map(([key, label]) => (
+              <ColorField
+                key={key}
+                label={label}
+                value={theme[key]}
+                onChange={(v) => updateThemeColor(key, v)}
+              />
             ))}
-          </select>
-          {THEME_LABELS.map(([key, label]) => (
-            <ColorField
-              key={key}
-              label={label}
-              value={theme[key]}
-              onChange={(v) => updateThemeColor(key, v)}
-            />
-          ))}
+          </div>
         </div>
       </div>
 
