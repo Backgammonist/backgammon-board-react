@@ -19,11 +19,7 @@ export const calculateBasePoints = (
   const bottomY = boardHeight - borderWidth - checkerWidth / 2 - checkerStroke;
   const xLeft = (i: number) => borderWidth + pointWidth / 2 + pointWidth * i;
   const xRight = (i: number) =>
-    borderWidth +
-    checkerWidth / 2 +
-    checkerStroke * 3 +
-    barWidth +
-    pointWidth * (6 + i);
+    borderWidth + barWidth + pointWidth / 2 + pointWidth * (6 + i);
 
   const bar = { x: boardWidth / 2, y: boardHeight / 2 };
 
