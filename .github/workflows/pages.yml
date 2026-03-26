@@ -1,4 +1,4 @@
-name: Deploy Editor to GitHub Pages
+name: Publish Editor to GitHub Pages
 
 on:
   push:
@@ -36,17 +36,13 @@ jobs:
 
       - name: Build editor
         working-directory: ./test-harness
-        run: pnpm exec vite build --base=/backgammon-board/
-
-      - name: Add root redirect to editor
-        run: |
-          echo '<meta http-equiv="refresh" content="0; url=editor/">' > test-harness/dist/index.html
+        run: pnpm run build:inline
 
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: test-harness/dist
+          path: test-harness/dist-inline
 
       - id: deployment
         uses: actions/deploy-pages@v4

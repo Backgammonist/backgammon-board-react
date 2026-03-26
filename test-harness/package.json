@@ -3,12 +3,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
+    "build:inline": "vite build --config vite.config.inline.ts",
     "e2e": "playwright test",
     "e2e:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@fontsource/open-sans": "^5.1.1",
     "@playwright/test": "^1.49.1",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "vite-plugin-singlefile": "^2.1.0"
   }
 }

@@ -3,6 +3,7 @@ node_modules
 /test-harness/test-results/
 /test-harness/playwright-report/
 /test-harness/dist/
+/test-harness/dist-inline/
 /blob-report/
 /playwright/.cache/
 /dist/

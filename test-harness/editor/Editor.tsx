@@ -454,7 +454,7 @@ const THEME_LABELS: [ThemeKey, string][] = [
   ["doublingCubeColor", "Doubling Cube"],
 ];
 
-const DOUBLING_VALUES: DoublingCube["value"][] = [2, 4, 8, 16, 32];
+const DOUBLING_VALUES: DoublingCube["value"][] = [2, 4, 8, 16, 32, 64];
 
 // ── Shared UI primitives ────────────────────────────────────────────────────
 
